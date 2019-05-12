@@ -1,3 +1,10 @@
+// Many of these imports are locally coded React components -- see the rest of
+// the .js files located in the 'src' folder
+
+// Key Blockstack imports are the
+// 'UserSession' and the
+// 'appConfig' which is
+// defined in the 'constants.js' file
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { UserSession } from 'blockstack'
@@ -12,6 +19,18 @@ import './SignedIn.css'
 
 class SignedIn extends Component {
 
+  // A constructor is a special type of subroutine called to create an object
+  // A constructor prepares the new object for use, often accepting arguments
+  // that the constructor uses to set required member variables
+
+  // A constructor resembles an instance method, but it differes from a method
+  // in that it has no explicit 'return type', it is not implicitly
+  // inherited and it usually has different rules for scope modifiers
+
+  // Constructors often have the same name as the declaring class.
+  // They have the task of initializing the obkect's data members and of
+  // establishing the invariant of the class, failing if the invariant
+  // is invalid
   constructor(props) {
     super(props)
     this.userSession = new UserSession({ appConfig })
@@ -31,6 +50,18 @@ class SignedIn extends Component {
     this.loadMe()
   }
 
+  // Gaia is the Blockstack data storage hub
+  // Once a user authenticates, the application can get and put
+  // application data in the user's data storage, and adter a user signs in
+  // the 'SignedIn.js' code checks the user's Gaia profile by running the
+  // 'loadMe()' method
+
+  // the 'loadMe()' code uses the Blockstack's 'UserSession.getFile()' method
+  // to get the specified file from the applications data store
+
+  // If the user's data store on Gaia does not have the data, which is the case
+  /// for new users, the Gaia hub responds with HTTP 404 code and 'getFile'
+  // promise resolves to null
   loadMe() {
     const options = { decrypt: false }
     this.userSession.getFile(ME_FILENAME, options)
@@ -46,6 +77,8 @@ class SignedIn extends Component {
     })
   }
 
+  // After a user chooses an animal persona and a territory, the user presses
+  // 'Done' and the application stores the user data on Gaia
   saveMe(me) {
     this.setState({me, savingMe: true})
     const options = { encrypt: false }
