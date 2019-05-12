@@ -43,5 +43,43 @@ document.getElementById('signout-button').addEventListener('click', function() {
 5.) Include the logic to load user data and to handle the authentication
     response
 ```javascript
-Test
+function showProfile(profile) {
+    var person = new blockstack.Person(profile)
+    document.getElementById('heading-name').innerHTML = person.name()
+    document.getElementById('avatar-image').setAttribute('src', person.avatarUrl())
+    document.getElementById('section-1').style.display = 'none'
+    document.getElementById('section-2').style.display = 'block'
+}
+
+if (blockstack.isUserSignedIn()) {
+  const userData = blockstack.loadUserData()
+    showProfile(userData.profile)
+}   else if (blockstack.isSignInPending()) {
+    blockstack.handlePendingSignIn()
+    .then(userData => {
+        showProfile(userData.profile)
+    })
+}
 ```
+
+6.) Create a ```manifest.json``` file
+
+Note:    Recall that the ```manifest.json``` file is used to set the main 
+         variables for your blockstack application.
+```json
+{
+    "name": "Hello, Blockstack",
+    "start_url": "localhost:5000",
+    "description": "A simple demo of Blockstack Auth",
+    "icons": [{
+        "src": "https://helloblockstack.com/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }]
+}
+```
+
+Make sure your ```manifest.json``` file has appropriate CORS headers so that it
+can be fetched via an http ```GET``` from any origin
+
+7.) Serve your application DUDE!
