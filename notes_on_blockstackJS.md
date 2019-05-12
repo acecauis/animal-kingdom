@@ -8,7 +8,7 @@ read and write to the user's data stored in a Gaia hub."
 ## Notes from the blockstack.js Reference library:
 ### Describing the Blockstack Javascript Software Developer Kit (SDK)
 
-    Installing the library:
+Installing the library:
 
 ```javascript
 npm install blockstack
@@ -28,7 +28,6 @@ import * as blockstack from 'blockstack'
 
 3.) Configure a sign-in button
 ```javascript
-\\ Configure a sign-in button
 document.getElementById('signin-button').addEventListener('click', function() {
     blockstack.redirectToSignIn()
 })
@@ -44,5 +43,5 @@ document.getElementById('signout-button').addEventListener('click', function() {
 5.) Include the logic to load user data and to handle the authentication
     response
 ```javascript
-
+Test
 ```
