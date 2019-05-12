@@ -1,4 +1,4 @@
-## Quoting from Blockstack documentation on the usefulness of blockstack javascript library:
+# Quoting from Blockstack documentation on the usefulness of blockstack javascript library:
 
 "Blockstack Javascript library is all a developer needs to create a DApp, as it
 grants the application the ability to authenticate a Blockstack identity and to
